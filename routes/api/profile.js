@@ -1,6 +1,5 @@
 const express = require('express');
 
-const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult} = require('express-validator');
@@ -297,8 +296,8 @@ router.get('/github/:username', async (req, res) => {
     try {
         const url = `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`;
 
-        const clientId = config.get('githubClientId');
-        const clientSecret = config.get('githubSecret');
+        const clientId = process.env.GITHUB_CLIENT_ID;
+        const clientSecret = process.env.GITHUB_SECRET;
         const authString = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
         const options = {
@@ -311,7 +310,7 @@ router.get('/github/:username', async (req, res) => {
 
         const response = await fetch(url, options);
 
-        if(response.statusCode === 404) {
+        if(response.status === 404) {
             return res.status(404).json({ msg: 'No Github profile found '});
         }
         if (response.status !== 200) {
@@ -321,21 +320,6 @@ router.get('/github/:username', async (req, res) => {
         const data = await response.json();
         return res.json(data);
 
-        // const options = {
-        //     uri: `https://api.github.com/users/${req.params.username}
-        //     /repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}
-        //     &client_secret=${config.get('githubSecret')}`,
-        //     method: 'GET',
-        //     headers: { 'user-agent': 'node.js'}
-        // };
-        // request(options, (error, response, body) => {
-        //     if(error) console.error(error);
-
-        //     if(response.statusCode !== 200) {
-        //         return res.status(404).json({ msg: 'No Github profile found '});
-        //     }
-        //     res.json(JSON.parse(body));
-        //  });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');

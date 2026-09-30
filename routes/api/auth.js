@@ -1,10 +1,8 @@
 const express = require('express');
-const { model } = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const { check, validationResult} = require('express-validator');
 
 const User = require('../../models/User')
@@ -22,7 +20,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-// @rotue        POST api/auth
+// @route        POST api/auth
 // @desc        Authenticate user & get token
 // @access      Public
 router.post('/', [
@@ -59,7 +57,7 @@ async (req, res) => {
         }
 
         jwt.sign(
-            payload, config.get('jwtSecret'), 
+            payload, process.env.JWT_SECRET, 
             {expiresIn: 360000}, 
             (err, token) => {
                 if(err) throw err;
