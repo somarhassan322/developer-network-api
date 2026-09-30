@@ -3,7 +3,7 @@ const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { check, validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
@@ -18,7 +18,7 @@ router.post('/', [
 async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
-        return res.status(400).json({ errors:errors.array() });
+        return res.status(400).json({ errors: errors.array() });
     }
 
     const { name, email, password } = req.body;
@@ -28,7 +28,7 @@ async (req, res) => {
         let user = await User.findOne({ email });
 
         if (user) {
-            return res.status(400).json({ errors: [{ msg: 'User already exists'}] })
+            return res.status(400).json({ errors: [{ msg: 'User already exists' }] })
         }
 
         // get users gravatar
@@ -36,7 +36,7 @@ async (req, res) => {
             s: '200',
             r: 'pg',
             d: 'mm'
-        })
+        });
 
         user = new User({
             name,
@@ -55,13 +55,13 @@ async (req, res) => {
         // Return jsonWebToken
         const payload = {
             user: {
-                id:user.id
+                id: user.id
             }
         }
 
         jwt.sign(
             payload, process.env.JWT_SECRET, 
-            {expiresIn: 360000}, 
+            { expiresIn: 36000 }, 
             (err, token) => {
                 if(err) throw err;
                 res.json({ token });
@@ -76,7 +76,6 @@ async (req, res) => {
 
 
 
-    // res.send('User route')
 });
 
 
