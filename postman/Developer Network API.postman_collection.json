@@ -1,0 +1,732 @@
+{
+  "info": {
+    "_postman_id": "5d9a630c-30a0-419c-a480-e6690262bfae",
+    "name": "Developer Network API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57639233"
+  },
+  "item": [
+    {
+      "name": "Users and Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Test User\",\r\n  \"email\": \"test-registration@example.com\",\r\n  \"password\": \"TestPassword123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Auth User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/auth",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"DLO@test.com\",\r\n    \"password\": \"123456\"\r\n\r\n    // \"email\": \"steve@test.com\",\r\n    // \"password\": \"123456\"\r\n\r\n    // \"email\": \"test-registration@example.com\",\r\n    // \"password\": \"TestPassword123\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/auth",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Add post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Delete Me now I demand\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get post by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts/6abd259107133b2c86c31473",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts",
+                "6abd259107133b2c86c31473"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete post",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts/6abcfe3c34e5ed5c75568bcf",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts",
+                "6abcfe3c34e5ed5c75568bcf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like a post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts/like/6abcfe8034e5ed5c75568bd1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts",
+                "like",
+                "6abcfe8034e5ed5c75568bd1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unlike a post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts/unlike/6abcfe8034e5ed5c75568bd1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts",
+                "unlike",
+                "6abcfe8034e5ed5c75568bd1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add a comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"delete me\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts/comment/6abcfe3c34e5ed5c75568bcf",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts",
+                "comment",
+                "6abcfe3c34e5ed5c75568bcf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a comment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/posts/comment/6abcfe3c34e5ed5c75568bcf/6abd26c507133b2c86c3147f",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "posts",
+                "comment",
+                "6abcfe3c34e5ed5c75568bcf",
+                "6abd26c507133b2c86c3147f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profiles",
+      "item": [
+        {
+          "name": "Users Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/me",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create and Update Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"company\": \"Test Company\",\r\n    \"status\": \"Developer\",\r\n    \"skills\": \"HTML, CSS, JS, Python\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Profiles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Github Repos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/github/somarhassan2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "github",
+                "somarhassan2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profile by user ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/user/6aa943bc30b59f907fa7a8af",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "user",
+                "6aa943bc30b59f907fa7a8af"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Profile and User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Experience",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"test\",\r\n    \"company\": \"test\",\r\n    \"location\": \"UAE, Dubai\",\r\n    \"from\": \"1-5-2020\",\r\n    \"to\": \"1-7-2009\",\r\n    \"description\": \"testing test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/experience",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "experience"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Education",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"school\": \"test\",\r\n    \"degree\": \"test\",\r\n    \"fieldofstudy\": \"test\",\r\n    \"from\": \"8-2-2021\",\r\n    \"to\": \"3-4-2026\",\r\n    \"description\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/education",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "education"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Experience",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/experience/6ab28b495a1370a911b76824",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "experience",
+                "6ab28b495a1370a911b76824"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Education",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "{{token}}",
+                "description": "Somar Token"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/profile/education/6ab3bba458f3b7b4c263e911",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "profile",
+                "education",
+                "6ab3bba458f3b7b4c263e911"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_0h2h",
+      "secret": true
+    }
+  ]
+}
